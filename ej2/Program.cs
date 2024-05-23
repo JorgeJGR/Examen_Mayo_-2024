@@ -43,7 +43,15 @@
             "Consulta 2: Mostrar titulo, año, país y duración"
             + "\nde las películas con duración entre 100 y 120 minutos, es decir,"
             + "\ncon duración mayor o igual de 100 y menor o igual de 120.");
-        var peliculasDuracion = "";
+        var peliculasDuracion = Cartelera.Peliculas
+                                                .Where(p => p.Duracion >= 100 && p.Duracion <= 120)
+                                                .Select(p => new
+                                                {
+                                                    p.Titulo,
+                                                    p.Año,
+                                                    p.Pais,
+                                                    p.Duracion
+                                                });
 
         Console.WriteLine(string.Join("\n", peliculasDuracion) + "\n");
 
