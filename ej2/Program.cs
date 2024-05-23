@@ -1,5 +1,4 @@
-﻿
-class Program
+﻿class Program
 {
 
     record Consulta3Dto(
@@ -22,11 +21,21 @@ class Program
        
     static void Main()
     {
+        Console.Clear();
         Console.WriteLine(
             "Consulta 1: Mostrar titulo, año, país y valoración"
             + "\nde las películas españolas del año 2014"
             + "\nordenados descendentemente por valoración");
-        var peliculasEspañolas2014 = "";
+        var peliculasEspañolas2014 = Cartelera.Peliculas
+                                                    .Where(p => p.Pais == "España" && p.Año == 2014)
+                                                    .OrderByDescending(p => p.Valoracion)
+                                                    .Select(p => new
+                                                    {
+                                                        p.Titulo,
+                                                        p.Año,
+                                                        p.Pais,
+                                                        p.Valoracion
+                                                    });
 
         Console.WriteLine(string.Join("\n", peliculasEspañolas2014) + "\n");
 
