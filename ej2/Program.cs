@@ -77,7 +77,9 @@
         Console.WriteLine(
             "Consulta 5: Calcular la duración media de las películas de cada país."
             + "\nMostrar: \"Pais: DuracionMedia\"");
-        var duracionMedia = "";
+        var duracionMedia = string.Join("", Cartelera.Peliculas
+                                            .GroupBy(p => p.Pais)
+                                            .Select(g => $"{g.Key}: {g.Average(p => p.Duracion):F1} \n"));
 
         Console.WriteLine(string.Join("\n", duracionMedia) + "\n");
 
