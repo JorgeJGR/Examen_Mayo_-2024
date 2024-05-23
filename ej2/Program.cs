@@ -78,15 +78,16 @@
             "Consulta 5: Calcular la duración media de las películas de cada país."
             + "\nMostrar: \"Pais: DuracionMedia\"");
         var duracionMedia = string.Join("", Cartelera.Peliculas
-                                            .GroupBy(p => p.Pais)
-                                            .Select(g => $"{g.Key}: {g.Average(p => p.Duracion):F1} \n"));
+                                                        .GroupBy(p => p.Pais)
+                                                        .Select(g => $"{g.Key}: {g.Average(p => p.Duracion):F1} \n"));
 
         Console.WriteLine(string.Join("\n", duracionMedia) + "\n");
 
         Console.WriteLine(
             "Consulta 6: Muestra sin repeticiones todos géneros de las peliculas en cartelera usando SelectMany.");
-        var generos = "";
-        
+        var generos = Cartelera.Peliculas
+                                    .SelectMany(p => p.Generos)
+                                    .Distinct();
         Console.WriteLine($"[{string.Join(", ", generos)}]\n");            
     }
 }
