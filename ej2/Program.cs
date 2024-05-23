@@ -63,7 +63,14 @@
         Console.WriteLine(
             "Consulta 4: Mostrar titulo, año y reparto"
             + "\nde las películas en las que conste un reparto con 2 actores");
-        var peliculasReparto = "";
+        var peliculasReparto = Cartelera.Peliculas
+                                            .Where(p => p.Staff.Reparto.Length == 2)
+                                            .Select(p => new
+                                            {
+                                                p.Titulo,
+                                                p.Año,
+                                                Reparto = $"[ {string.Join(" ", p.Staff.Reparto)} ]"
+                                            });
 
         Console.WriteLine(string.Join("\n", peliculasReparto) + "\n");
 
