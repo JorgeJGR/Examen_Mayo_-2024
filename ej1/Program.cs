@@ -37,3 +37,4 @@ class Program
         Console.WriteLine($"\nMedicamentos agotados: {string.Join(", ", miFarmacia.MedicamentosAgotados().Select(m => m.Nombre))}");
     }
 }
+record class Medicamento(string Nombre, double Precio, string Proveedor): IProducto
