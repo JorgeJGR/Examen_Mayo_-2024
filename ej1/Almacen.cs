@@ -75,16 +75,19 @@ class Almacen<T> where T : IProducto
     private string ReumenInventario()
     {
         StringBuilder sb = new StringBuilder();
-        sb.AppendFormat("{0,-20} {1,-10} {2,-10} {3,-10}", "Nombre", "Ubicación", "Unidades", "Precio");
+        sb.AppendFormat("{0,20} {1,-10} {2,-10} {3,-10}", "Nombre", "Ubicación", "Unidades", "Precio");
         string linea = "";
         for (int i = 0; i < sb.Length; i++)
             linea += "-";
         sb.AppendLine(linea);
-        for (int i = 0; i < Inventario.Count; i++)
+        double total = 0;
+        foreach (KeyValuePair<T, DatosAlmacenaje> par in Inventario)
         {
-            sb.AppendLine($"{0,-20} {1,-10} {2,-10} {3,-10}", Inventario[i].)
+            sb.AppendLine($"{par.Key.Nombre,20}{par.Value.Ubicacion,-10}{par.Value.Unidades,-10}{par.Key.Precio,-10}");
+            total += par.Key.Precio * par.Value.Unidades;
         }
-
+        sb.AppendLine(linea);
+        sb.AppendLine($"Valor total: {total}");
         return sb.ToString();
     }
 }
