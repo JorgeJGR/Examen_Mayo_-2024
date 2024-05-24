@@ -10,9 +10,9 @@
             "request": "launch",
             "preLaunchTask": "build",
             // Si ha cambiado las plataformas de destino, asegúrese de actualizar la ruta de acceso del programa.
-            "program": "${workspaceFolder}/ej2/bin/Debug/net6.0/ej2.dll",
+            "program": "${workspaceFolder}/ej1/bin/Debug/net6.0/ej1.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/ej2",
+            "cwd": "${workspaceFolder}/ej1",
             // Para obtener más información sobre el campo \"consola\", consulte https://aka.ms/VSCode-CS-LaunchJson-Console
             "console": "integratedTerminal",
             "stopAtEntry": false
