@@ -8,7 +8,7 @@ class Program
 
         miFarmacia.Alta(new Medicamento("Paracetamol", 5.99, "Proveedor A"));
         miFarmacia.Alta(new Medicamento("Ibuprofeno", 7.49, "Proveedor B"));
-        miFarmacia.Alta(new Medicamento("Amoxicilina", 9.99, "Proveedor C"));        
+        miFarmacia.Alta(new Medicamento("Amoxicilina", 9.99, "Proveedor C"));
 
         Console.WriteLine("Inventario inicial:");
         Console.WriteLine(miFarmacia.MostrarInventario());
@@ -35,5 +35,15 @@ class Program
         Console.WriteLine(miFarmacia.MostrarInventario());
 
         Console.WriteLine($"\nMedicamentos agotados: {string.Join(", ", miFarmacia.MedicamentosAgotados().Select(m => m.Nombre))}");
+    }
+}
+class DatosAlmacenaje
+{
+    public int Unidades { get; init; }
+    public int Ubicacion { get; init; }
+    public DatosAlmacenaje(int ubicacion)
+    {
+        Ubicacion = ubicacion;
+        Unidades = 0;
     }
 }
