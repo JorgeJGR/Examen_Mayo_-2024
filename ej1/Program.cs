@@ -37,13 +37,38 @@ class Program
         Console.WriteLine($"\nMedicamentos agotados: {string.Join(", ", miFarmacia.MedicamentosAgotados().Select(m => m.Nombre))}");
     }
 }
-class DatosAlmacenaje
+class Almacen<T> where T : IProducto
 {
-    public int Unidades { get; init; }
-    public int Ubicacion { get; init; }
-    public DatosAlmacenaje(int ubicacion)
+    private Dictionary<T, DatosAlmacenaje> Inventario { get; init; }
+    private bool[] Ubicaciones { get; init; }
+    public event Action<int> OnReponerStock;
+    public Almacen(int ubicacionesDisponibles)
     {
-        Ubicacion = ubicacion;
-        Unidades = 0;
+        Ubicaciones = new bool[ubicacionesDisponibles];
+        for (int i = 0; i < ubicacionesDisponibles; i++)
+            Ubicaciones[i] = false;
+        Inventario = new Dictionary<T, DatosAlmacenaje>();
+    }
+    private bool EstaEnAlmacen(T producto) => Inventario.ContainsKey(producto);
+    private void Alta(T producto)
+    {
+        bool estaEnAlmacen = EstaEnAlmacen(producto);
+        if (estaEnAlmacen)
+            throw new InvalidOperationException("El producto ya está dado de alta en el almacén");
+        int ubicacionLibre = 0;
+        bool encontradaUbicacion = false;
+        for (int i = 0; i < Ubicaciones.Length; i++)
+        {
+            if (Ubicaciones[i] == false)
+            {
+                encontradaUbicacion = true;
+                ubicacionLibre = i;
+                break;
+            }
+        }
+        if (!encontradaUbicacion)
+            throw new InvalidOperationException("No hay ubicaciones libres en el almacén");
+        Inventario[producto] = new DatosAlmacenaje(ubicacionLibre);
+        Ubicaciones[ubicacionLibre] = true;
     }
 }
