@@ -2,7 +2,7 @@
 
 class DatosAlmacenaje
 {
-    public int Unidades { get; init; }
+    public int Unidades { get; set; }
     public int Ubicacion { get; init; }
     public DatosAlmacenaje(int ubicacion)
     {
