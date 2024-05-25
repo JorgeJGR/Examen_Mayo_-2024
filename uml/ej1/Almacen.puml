@@ -1,0 +1,15 @@
+@startuml
+class "Almacen`1"<T> {
+    +  <<event>> OnReponerStock : Action<T> 
+    + Almacen(ubicacionesDisponibles:int)
+    - EstaEnAlmacen(producto:T) : bool
+    + Alta(producto:T) : void
+    + Baja(producto:T) : void
+    + AgregaStock(producto:T, unidades:int) : void
+    + RetiraStock(producto:T, unidades:int) : int
+    + ResumenInventario() : string
+}
+class "Dictionary`2"<T1,T2> {
+}
+"Almacen`1" --> "Inventario<T,DatosAlmacenaje>" "Dictionary`2"
+@enduml

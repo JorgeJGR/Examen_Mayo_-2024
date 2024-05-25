@@ -1,6 +1,4 @@
-﻿
-
-class Program
+﻿class Program
 {
     static void Main()
     {
@@ -37,4 +35,40 @@ class Program
         Console.WriteLine($"\nMedicamentos agotados: {string.Join(", ", miFarmacia.MedicamentosAgotados().Select(m => m.Nombre))}");
     }
 }
-record class Medicamento(string Nombre, double Precio, string Proveedor): IProducto
+class Farmacia
+{
+    private string Nombre { get; init; }
+    private Almacen<IProducto> Almacen { get; init; }
+    public Farmacia(string nombre)
+    {
+        Nombre = nombre;
+        Almacen = new Almacen<IProducto>(100);
+        Almacen.OnReponerStock += AvisoReposicionMedicamento;
+    }
+    public void AvisoReposicionMedicamento(IProducto producto)
+        => Console.WriteLine($"AVISO: Mandando reposición stock {producto.Nombre} al proveedor {producto.Proveedor}");
+
+    public void Alta(Medicamento medicamento)
+        => Almacen.Alta(medicamento);
+
+    public string MostrarInventario()
+        => Almacen.ResumenInventario();
+
+    public void Reponer(Medicamento medicamento, int unidades)
+        => Almacen.AgregaStock(medicamento, unidades);
+
+    public int Retirar(Medicamento medicamento, int unidades)
+        => Almacen.RetiraStock(medicamento, unidades);
+
+    public void Baja(Medicamento medicamento)
+    => Almacen.Baja(medicamento);
+
+    public IEnumerable<IProducto> MedicamentosAgotados()
+    {
+        return Almacen.Inventario
+            .Where(par => par.Value.Unidades == 0)
+            .Select(par => par.Key)
+            .Cast<IProducto>();
+    }
+
+}

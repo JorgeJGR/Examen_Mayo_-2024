@@ -1,0 +1,19 @@
+@startuml
+class Program {
+    {static} - Main() : void
+}
+class Farmacia {
+    - Nombre : string <<get>> <<init>>
+    + Farmacia(nombre:string)
+    + AvisoReposicionMedicamento(producto:IProducto) : void
+    + Alta(medicamento:Medicamento) : void
+    + MostrarInventario() : string
+    + Reponer(medicamento:Medicamento, unidades:int) : void
+    + Retirar(medicamento:Medicamento, unidades:int) : int
+    + Baja(medicamento:Medicamento) : void
+    + MedicamentosAgotados() : IEnumerable<IProducto>
+}
+class "Almacen`1"<T> {
+}
+Farmacia --> "Almacen<IProducto>" "Almacen`1"
+@enduml

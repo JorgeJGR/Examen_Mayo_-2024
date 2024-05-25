@@ -1,0 +1,7 @@
+@startuml
+class DatosAlmacenaje {
+    + Unidades : int <<get>> <<set>>
+    + Ubicacion : int <<get>> <<init>>
+    + DatosAlmacenaje(ubicacion:int)
+}
+@enduml

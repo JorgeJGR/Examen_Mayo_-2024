@@ -1,0 +1,7 @@
+@startuml
+class Cartelera <<static>> {
+}
+class "IEnumerable`1"<T> {
+}
+Cartelera --> "Peliculas<Pelicula>" "IEnumerable`1"
+@enduml

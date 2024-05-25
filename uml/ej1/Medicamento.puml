@@ -1,0 +1,8 @@
+@startuml
+class Medicamento <<record>> {
+    + Nombre : string <<get>> <<init>>
+    + Precio : double <<get>> <<init>>
+    + Proveedor : string <<get>> <<init>>
+}
+IProducto <|-- Medicamento
+@enduml

@@ -1,0 +1,12 @@
+@startuml
+class Program {
+    {static} - Consulta3() : IEnumerable<Consulta3Dto>
+    {static} - Main() : void
+}
+class Consulta3Dto <<record>> {
+    + Titulo : string <<get>> <<init>>
+    + Año : int <<get>> <<init>>
+    + Generos : string <<get>> <<init>>
+}
+Program +-- Consulta3Dto
+@enduml

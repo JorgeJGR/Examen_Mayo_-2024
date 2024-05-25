@@ -1,10 +1,8 @@
-
-
 using System.Text;
 
 class Almacen<T> where T : IProducto
 {
-    private Dictionary<T, DatosAlmacenaje> Inventario { get; init; }
+    public Dictionary<T, DatosAlmacenaje> Inventario { get; init; }
     private bool[] Ubicaciones { get; init; }
     public event Action<T> OnReponerStock;
     public Almacen(int ubicacionesDisponibles)
@@ -15,7 +13,7 @@ class Almacen<T> where T : IProducto
         Inventario = new Dictionary<T, DatosAlmacenaje>();
     }
     private bool EstaEnAlmacen(T producto) => Inventario.ContainsKey(producto);
-    private void Alta(T producto)
+    public void Alta(T producto)
     {
         bool estaEnAlmacen = EstaEnAlmacen(producto);
         if (estaEnAlmacen)
@@ -36,7 +34,7 @@ class Almacen<T> where T : IProducto
         Inventario[producto] = new DatosAlmacenaje(ubicacionLibre);
         Ubicaciones[ubicacionLibre] = true;
     }
-    private void Baja(T producto)
+    public void Baja(T producto)
     {
         bool estaEnAlmacen = EstaEnAlmacen(producto);
         if (!estaEnAlmacen)
@@ -45,7 +43,7 @@ class Almacen<T> where T : IProducto
         Inventario.Remove(producto);
     }
 
-    private void AgregaStock(T producto, int unidades)
+    public void AgregaStock(T producto, int unidades)
     {
         bool estaEnAlmacen = EstaEnAlmacen(producto);
         if (!estaEnAlmacen)
@@ -53,29 +51,29 @@ class Almacen<T> where T : IProducto
         Inventario[producto].Unidades += unidades;
     }
 
-    private int RetiraStock(T producto, int unidades)
+    public int RetiraStock(T producto, int unidades)
     {
-        int unidadesRetiradas;
+        int unidadesRetiradas = 0;
         bool estaEnAlmacen = EstaEnAlmacen(producto);
         if (!estaEnAlmacen)
             throw new InvalidOperationException("El producto no está en el almacén");
         if (Inventario[producto].Unidades > unidades)
         {
-            Inventario[producto].Unidades += unidades;
+            Inventario[producto].Unidades = Inventario[producto].Unidades - unidades;
             unidadesRetiradas = unidades;
         }
-        else
+        else 
         {
-            unidadesRetiradas = unidades - Inventario[producto].Unidades;
+            unidadesRetiradas = Inventario[producto].Unidades;
             Inventario[producto].Unidades = 0;
             OnReponerStock(producto);
         }
         return unidadesRetiradas;
     }
-    private string ReumenInventario()
+    public string ResumenInventario()
     {
         StringBuilder sb = new StringBuilder();
-        sb.AppendFormat("{0,20} {1,-10} {2,-10} {3,-10}", "Nombre", "Ubicación", "Unidades", "Precio");
+        sb.AppendFormat("{0,-20} {1,10} {2,10} {3,10}\n", "Nombre", "Ubicación", "Unidades", "Precio");
         string linea = "";
         for (int i = 0; i < sb.Length; i++)
             linea += "-";
@@ -83,11 +81,11 @@ class Almacen<T> where T : IProducto
         double total = 0;
         foreach (KeyValuePair<T, DatosAlmacenaje> par in Inventario)
         {
-            sb.AppendLine($"{par.Key.Nombre,20}{par.Value.Ubicacion,-10}{par.Value.Unidades,-10}{par.Key.Precio,-10}");
+            sb.AppendLine($"{par.Key.Nombre,-20}{par.Value.Ubicacion,10}{par.Value.Unidades,12}{par.Key.Precio,11}");
             total += par.Key.Precio * par.Value.Unidades;
         }
         sb.AppendLine(linea);
-        sb.AppendLine($"Valor total: {total}");
+        sb.AppendLine($"Valor total: {total:F2}");
         return sb.ToString();
     }
 }

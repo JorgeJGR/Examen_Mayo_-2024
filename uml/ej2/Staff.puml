@@ -1,0 +1,6 @@
+@startuml
+class Staff <<record>> {
+    + Productora : string <<get>> <<init>>
+    + Director : string <<get>> <<init>>
+}
+@enduml

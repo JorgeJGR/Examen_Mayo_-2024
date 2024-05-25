@@ -1,0 +1,10 @@
+@startuml
+class Pelicula <<record>> {
+    + Titulo : string <<get>> <<init>>
+    + Año : int <<get>> <<init>>
+    + Duracion : int <<get>> <<init>>
+    + Pais : string <<get>> <<init>>
+    + Valoracion : double <<get>> <<init>>
+}
+Pelicula --> "Staff" Staff
+@enduml
