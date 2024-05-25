@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jjgui\\OneDrive\\Escritorio\\Recursos\\ej2\\ej2.csproj": {}
+    "C:\\Users\\jjgui\\OneDrive\\Escritorio\\ExaMayo2024semi\\ej2\\ej2.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jjgui\\OneDrive\\Escritorio\\Recursos\\ej2\\ej2.csproj": {
+    "C:\\Users\\jjgui\\OneDrive\\Escritorio\\ExaMayo2024semi\\ej2\\ej2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jjgui\\OneDrive\\Escritorio\\Recursos\\ej2\\ej2.csproj",
+        "projectUniqueName": "C:\\Users\\jjgui\\OneDrive\\Escritorio\\ExaMayo2024semi\\ej2\\ej2.csproj",
         "projectName": "ej2",
-        "projectPath": "C:\\Users\\jjgui\\OneDrive\\Escritorio\\Recursos\\ej2\\ej2.csproj",
+        "projectPath": "C:\\Users\\jjgui\\OneDrive\\Escritorio\\ExaMayo2024semi\\ej2\\ej2.csproj",
         "packagesPath": "C:\\Users\\jjgui\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jjgui\\OneDrive\\Escritorio\\Recursos\\ej2\\obj\\",
+        "outputPath": "C:\\Users\\jjgui\\OneDrive\\Escritorio\\ExaMayo2024semi\\ej2\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\jjgui\\AppData\\Roaming\\NuGet\\NuGet.Config",
